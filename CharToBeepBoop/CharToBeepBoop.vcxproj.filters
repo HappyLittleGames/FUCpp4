@@ -24,12 +24,36 @@
     <ClCompile Include="SoundLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Beep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Boop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Syllable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Beep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Boop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Syllable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

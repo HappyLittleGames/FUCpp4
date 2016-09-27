@@ -4,6 +4,7 @@
 
 SoundLoader::SoundLoader()
 {
+	m_filePaths.clear();
 }
 
 
@@ -11,9 +12,12 @@ SoundLoader::~SoundLoader()
 {
 }
 
+
 void SoundLoader::LoadSounds()
 {
-	// should read the directory though
+
+	std::cout << "initiating SoundLoader vector" << std::endl;
+	std::cout << "loading entries from" << " clips\\reg.txt" << std::endl;
 	std::ifstream file("clips\\reg.txt");
 	if (file)
 	{
@@ -21,24 +25,88 @@ void SoundLoader::LoadSounds()
 		m_filePaths.clear();
 		while (std::getline(file, str))
 		{
-			m_filePaths.push_back(str);
-		}
-
-		std::cout << "paths: " << std::endl;
-		for each (std::string path in m_filePaths)
-		{
-			std::cout << path << std::endl;
+			m_filePaths.push_back("clips\\"+str);
+#ifdef _DEBUG
+			std::cout << "added " << m_filePaths.back() << std::endl;
+#endif
 		}
 	}
 	else
 	{
-		std::cout << "LoadSounds() failed to find specified path" << std::endl;
+		std::cout << "SoundLoader::LoadSounds failed to find specified registry" << std::endl;
 	}
 }
 
-std::vector<std::string> SoundLoader::GetSounds()
-{
-	// flyweight this!! like the whole point eeeeh
 
+Sound * SoundLoader::MakeSound(char* filePath)
+{
+	return new Sound(filePath);
+}
+
+
+Sound* SoundLoader::RandomSound()
+{
+	int random = rand() % m_filePaths.size();
+	if (m_soundMap.find(m_filePaths[random].c_str()) != m_soundMap.end())
+	{
+		return m_soundMap[m_filePaths[random].c_str()];
+	}
+	else
+	{
+		m_soundMap.emplace(m_filePaths[random].c_str(), new Sound(m_filePaths[random].c_str()));
+		return m_soundMap[m_filePaths[random].c_str()];
+	}
+}
+
+
+std::vector<std::string>& SoundLoader::GetSounds()
+{
 	return m_filePaths;
+}
+
+
+std::vector<std::string*> SoundLoader::StringToSyllables(std::string & string)
+{
+	std::vector<std::string*> syllables{};
+	std::string currentSyllable{};
+	for each (char letter in string)
+	{
+		if (IsVowel(letter))
+		{
+			currentSyllable.push_back(letter);
+		}
+		else if (letter == string.back())
+		{
+			currentSyllable.push_back(letter);
+			syllables.push_back(new std::string(currentSyllable));
+			currentSyllable.clear();
+		}
+		else
+		{
+			currentSyllable.push_back(letter);
+			syllables.push_back(new std::string(currentSyllable));
+			currentSyllable.clear();
+		}
+	}
+	return syllables;
+}
+
+
+bool SoundLoader::IsVowel(char letter)
+{
+	switch (toupper(letter))
+	{
+	case 'A':
+	case 'E':
+	case 'I':
+	case 'O':
+	case 'U':
+	case 'Y':
+		return true;
+		break;
+	default:
+		return false;
+		break;
+
+	}
 }

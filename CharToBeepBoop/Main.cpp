@@ -16,27 +16,21 @@ int main()
 	SoundLibrary* soundLib = SoundLibrary::GetInstance();
 
 	std::string what = "hello";
+
 	while (what != "exit")
 	{
 		if (what == "1")
 		{
-			if (PlaySound(TEXT("clips\\audio1"), NULL, SND_FILENAME)) // SND_ASYNC leaves out wait :)
-				std::cout << "played //audio1\n";
+			soundLib->LoadFiles();
 		}
 		else if (what == "2")
 		{
-			if (PlaySound(TEXT("clips\\audio2"), NULL, SND_FILENAME | SND_ASYNC))
-				std::cout << "played //audio\n";
+			soundLib->PrintFiles();
 		}
 		else if (what == "3")
 		{
 			if (soundLib->PlaySequence("words"))
 				std::cout << "done playing words\n";	
-		}
-		else if (what == "4")
-		{
-			if (soundLib->PlayRandSequence("words"))
-				std::cout << "done playing words\n";
 		}
 		else
 		{
