@@ -1,6 +1,8 @@
 #pragma once
+
 #include <atlbase.h>
 #include <Windows.h>
+#include "Syllable.h"
 #include "SoundLoader.h"
 
 class SoundLibrary
@@ -12,12 +14,13 @@ public:
 	bool PlaySequence(std::string word);
 	void LoadFiles();
 	void PrintFiles();
-	void PlaySyllable(std::string syllable);
+	
 private:
 	SoundLoader* m_soundLoader;
 	std::map<std::string, Syllable*> m_syllableMap;
 	SoundLibrary();
 	~SoundLibrary();
+	void PlaySyllable(std::string syllable);
 	void PlayLetter(char letter);
 };
 

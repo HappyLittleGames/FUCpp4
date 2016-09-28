@@ -142,8 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Beep.cpp" />
-    <ClCompile Include="Boop.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundLibrary.cpp" />
@@ -151,8 +149,6 @@
     <ClCompile Include="Syllable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Beep.h" />
-    <ClInclude Include="Boop.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundLibrary.h" />
     <ClInclude Include="SoundLoader.h" />

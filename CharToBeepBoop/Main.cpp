@@ -14,8 +14,7 @@ int main()
 #endif
 
 	SoundLibrary* soundLib = SoundLibrary::GetInstance();
-
-	std::string what = "hello";
+	std::string what = "I am a robot, eep oop";
 
 	while (what != "exit")
 	{
@@ -26,11 +25,6 @@ int main()
 		else if (what == "2")
 		{
 			soundLib->PrintFiles();
-		}
-		else if (what == "3")
-		{
-			if (soundLib->PlaySequence("words"))
-				std::cout << "done playing words\n";	
 		}
 		else
 		{

@@ -5,8 +5,8 @@
 #include <fstream>
 #include <conio.h>
 
-class Sound {
-
+class Sound
+{
 public:
 	Sound(const char* filename);
 	~Sound();

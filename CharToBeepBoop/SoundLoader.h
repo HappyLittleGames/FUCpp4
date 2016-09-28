@@ -11,13 +11,13 @@
 #include <map>
 #include <vector>
 #include "Syllable.h"
+
 class SoundLoader
 {
 public:
 	SoundLoader();
 	~SoundLoader();
 	void LoadSounds();
-	Sound* MakeSound(char* filePath);
 	std::vector<std::string>& GetSounds();
 	std::vector<std::string*> StringToSyllables(std::string& string);
 	Sound* RandomSound();

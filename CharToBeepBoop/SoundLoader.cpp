@@ -38,12 +38,6 @@ void SoundLoader::LoadSounds()
 }
 
 
-Sound * SoundLoader::MakeSound(char* filePath)
-{
-	return new Sound(filePath);
-}
-
-
 Sound* SoundLoader::RandomSound()
 {
 	int random = rand() % m_filePaths.size();
@@ -69,17 +63,19 @@ std::vector<std::string*> SoundLoader::StringToSyllables(std::string & string)
 {
 	std::vector<std::string*> syllables{};
 	std::string currentSyllable{};
+	int i = 0;
 	for each (char letter in string)
 	{
-		if (IsVowel(letter))
-		{
-			currentSyllable.push_back(letter);
-		}
-		else if (letter == string.back())
+		i++;
+		if ((i == string.size()) || (currentSyllable.size() > 5)) // syllables can't be longer than 5, yeah.
 		{
 			currentSyllable.push_back(letter);
 			syllables.push_back(new std::string(currentSyllable));
 			currentSyllable.clear();
+		}
+		else if (IsVowel(letter))
+		{
+			currentSyllable.push_back(letter);
 		}
 		else
 		{
